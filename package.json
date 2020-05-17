@@ -9,6 +9,13 @@
   "author": "NghiaPH",
   "license": "ISC",
   "dependencies": {
-    "greenlock-express": "^4.0.3"
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "cherio": "^1.0.0-rc.2",
+    "express": "^4.17.1",
+    "greenlock-express": "^4.0.3",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
   }
 }
