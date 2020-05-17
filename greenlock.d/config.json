@@ -1,0 +1,33 @@
+{
+  "defaults": {
+    "store": {
+      "module": "greenlock-store-fs"
+    },
+    "challenges": {
+      "http-01": {
+        "module": "acme-http-01-standalone"
+      }
+    },
+    "renewOffset": "-45d",
+    "renewStagger": "3d",
+    "accountKeyType": "EC-P256",
+    "serverKeyType": "RSA-2048",
+    "subscriberEmail": "nghiaphamln3@gmail.com"
+  },
+  "sites": [
+    {
+      "subject": "nghiaph.com",
+      "altnames": [
+        "nghiaph.com"
+      ],
+      "renewAt": 1
+    },
+    {
+      "subject": "nghiaph.dev",
+      "altnames": [
+        "nghiaph.dev"
+      ],
+      "renewAt": 1
+    }
+  ]
+}
