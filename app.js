@@ -3,9 +3,14 @@
 var express = require("express");
 var app = express();
 
-app.use("/", function(req, res) {
+app.use("/news", function(req, res) {
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.end("Hello!\n\n💚 🔒.js");
+    res.end("News!\n\n💚 🔒.js");
+});
+
+app.use("/TKB", function(req, res) {
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.end("TKB!\n\n💚 🔒.js");
 });
 
 // DO NOT DO app.listen() unless we're testing this directly
