@@ -2,20 +2,43 @@
 
 var express = require("express");
 var app = express();
+const APIHuflit = require("./huflit");
+const API = new APIHuflit();
+const TDMU = require("./getTKB");
 
-app.use("/news", function(req, res) {
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.end("News!\n\n💚 🔒.js");
+var mysql = require("mysql");
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "gettkb",
 });
 
-app.use("/TKB", function(req, res) {
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.end("TKB!\n\n💚 🔒.js");
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected!!!");
+});
+
+app.get("/news", async (req, res) => {
+    let news = await TDMU.getNewsTDMU();
+    res.json({
+        messages: [
+          {
+            text: news
+          }
+        ]
+      });
+});
+
+app.use("/TKB", function (req, res)  {
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.end("TKB!\n\n💚 🔒.js");
 });
 
 // DO NOT DO app.listen() unless we're testing this directly
 if (require.main === module) {
-    app.listen(3000);
+  app.listen(3000);
 }
 
 // Instead do export the app:
