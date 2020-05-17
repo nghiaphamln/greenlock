@@ -1,20 +1,22 @@
 "use strict";
 
-var apps = require("./app.js");
+var app = require("./app.js");
 
+app.get("/hello", function(req, res) {
+    res.end("Hello, Encrypted World!");
+});
+
+//require("greenlock-express")
 require("greenlock-express")
-  .init({
-    packageRoot: __dirname,
+    .init({
+        packageRoot: __dirname,
+        configDir: "./greenlock.d",
 
-    // contact for security and critical bug notices
-    maintainerEmail: "nghiaphamln3@gmail.com",
+        maintainerEmail: "nghiaphamln3@gmail.com",
 
-    // where to look for configuration
-    configDir: "./greenlock.d",
+        cluster: false
+    })
 
-    // whether or not to run at cloudscale
-    cluster: false,
-  })
-  // Serves on 80 and 443
-  // Get's SSL certificates magically!
-  .serve(apps);
+    // Serves on 80 and 443
+    // Get's SSL certificates magically!
+    .serve(app);
