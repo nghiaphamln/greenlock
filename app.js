@@ -185,12 +185,6 @@ app.get("/diem/:fb_id", async (req, res) => {
   );
 });
 
-app.use("/TKB", function (req, res) {
-  res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.end("TKB!\n\n💚 🔒.js");
-});
-
-// DO NOT DO app.listen() unless we're testing this directly
 if (require.main === module) {
   app.listen(3000);
 }
