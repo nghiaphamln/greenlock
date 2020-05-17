@@ -192,6 +192,30 @@ app.get("/totnghiep", async (req, res) => {
   });
 });
 
+app.get("/chuyennganh", async (req, res) => {
+  var content =
+    "Sinh viên được chuyển ngành học nếu thỏa mãn các điều kiện: Ngành chuyển đến có cùng khối thi tuyển sinh với ngành chuyển đi và điểm thi phải cao hơn hoặc bằng điểm trúng tuyển của ngành chuyển đến trong cùng năm nhập học. Không được chuyển ngành trong năm học thứ nhất và năm học cuối khóa học. Sinh viên không thuộc diện cảnh báo học vụ hoặc bị buộc thôi học.\nSinh viên chỉ được xét chuyển ngành trong một lần trong suốt khóa học, tùy theo năng lực của khoa tiếp nhận. Hồ sơ xin chuyển ngành nộp phòng Đào tạo 15 ngày trước kho bắt đầu năm học mới. Sau khi được chuyển ngành, sinh viên phải tích lũy đầy đủ chương trình đào tạo của ngành mới trong thời gian được phép còn lại của ngành học cũ.";
+  res.json({
+    messages: [
+      {
+        text: content,
+      },
+    ],
+  });
+});
+
+app.get("/hocbong", async (req, res) => {
+  var content =
+    "1. Đối tượng được cấp, xét học bổng\n- Sinh viên hệ chính quy được xếp loại học tập và rèn luyện trong học kỳ xét học bổng từ loại khá trở lên, không bị xử lí kỷ luật với bất kì hình thức nào\n- Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội và chính sách ưu đãi theo quy định hiện hành thì ngoài chế độ đang được hưởng, nếu đạt kết quả xếp loại học tập và rèn luyện trong học kì từ khá trở lên cũng được xét, cấp học bổng như các sinh viên khác\n2. Tiêu chuẩn xếp loại\n- Xuất sắc:\n+ Điểm từ 9 đến 10\n+ Kết quả rèn luyện loại xuất sắc\n- Giỏi:\n+ Đạt điểm từ 8 đến cận 9\n+ Kết quả rèn luyện loại tốt trở lên\n- Khá:\n+ Đạt điểm từ 7 đến cận 8\n+ Kết quả rèn luyện loại khá trở lên";
+  res.json({
+    messages: [
+      {
+        text: content,
+      },
+    ],
+  });
+});
+
 if (require.main === module) {
   app.listen(3000);
 }
