@@ -185,41 +185,15 @@ app.get("/diem/:fb_id", async (req, res) => {
   );
 });
 
-app.get("/totnghiep", async (req, res) => {
-  var content =
+const totnghiep =
     "1. Điều kiện xét tốt nghiệp:\n- Không bị truy cứu trách nhiệm hình sự hoặc không bị kỷ luật từ mức đình chỉ trở lên\n- Tích lũy đủ số học phần quy định trong Chương trình đào tạo\n- Điểm trung bình từ 5,0 trở lên\n- Có chứng chỉ giáo dục quốc phòng\n- Đạt yêu cầu về Giáo dục thể chất theo quy định của trường. \n2. Điều kiện công nhận tốt nghiệp: \n- Được tốt nghiệp theo mục 1\n- Được hội đồng xét tốt nghiệp cấp trường thông qua và trình Hiệu trưởng ban hành quyết định công nhận\n3. Điều kiện cấp bằng tốt nghiệp:\n- Được công nhận tốt nghiệp theo mục 2\n- Có các chứng chỉ theo quy định đầu ra của trường về ngoại ngữ, tin học, kỹ năng xã hội.";
-  res.json({
-    messages: [
-      {
-        text: content,
-      },
-    ],
-  });
-});
 
-app.get("/chuyennganh", async (req, res) => {
-  var content =
+  const chuyennganh =
     "Sinh viên được chuyển ngành học nếu thỏa mãn các điều kiện: Ngành chuyển đến có cùng khối thi tuyển sinh với ngành chuyển đi và điểm thi phải cao hơn hoặc bằng điểm trúng tuyển của ngành chuyển đến trong cùng năm nhập học. Không được chuyển ngành trong năm học thứ nhất và năm học cuối khóa học. Sinh viên không thuộc diện cảnh báo học vụ hoặc bị buộc thôi học.\nSinh viên chỉ được xét chuyển ngành trong một lần trong suốt khóa học, tùy theo năng lực của khoa tiếp nhận. Hồ sơ xin chuyển ngành nộp phòng Đào tạo 15 ngày trước kho bắt đầu năm học mới. Sau khi được chuyển ngành, sinh viên phải tích lũy đầy đủ chương trình đào tạo của ngành mới trong thời gian được phép còn lại của ngành học cũ.";
-  res.json({
-    messages: [
-      {
-        text: content,
-      },
-    ],
-  });
-});
 
-app.get("/hocbong", async (req, res) => {
-  var content =
+
+  const hocbong =
     "1. Đối tượng được cấp, xét học bổng\n- Sinh viên hệ chính quy được xếp loại học tập và rèn luyện trong học kỳ xét học bổng từ loại khá trở lên, không bị xử lí kỷ luật với bất kì hình thức nào\n- Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội và chính sách ưu đãi theo quy định hiện hành thì ngoài chế độ đang được hưởng, nếu đạt kết quả xếp loại học tập và rèn luyện trong học kì từ khá trở lên cũng được xét, cấp học bổng như các sinh viên khác\n2. Tiêu chuẩn xếp loại\n- Xuất sắc:\n+ Điểm từ 9 đến 10\n+ Kết quả rèn luyện loại xuất sắc\n- Giỏi:\n+ Đạt điểm từ 8 đến cận 9\n+ Kết quả rèn luyện loại tốt trở lên\n- Khá:\n+ Đạt điểm từ 7 đến cận 8\n+ Kết quả rèn luyện loại khá trở lên";
-  res.json({
-    messages: [
-      {
-        text: content,
-      },
-    ],
-  });
-});
 
 if (require.main === module) {
   app.listen(3000);
@@ -248,27 +222,30 @@ app.post('/webhook', function(req, res) {
     var messaging = entry.messaging;
     for (var message of messaging) {
       var senderId = message.sender.id;
-      if (message.message) {
-        // Nếu người dùng gửi tin nhắn đến
-        if (message.message.text) {
-          var text = message.message.text;
-          if(text == 'hi' || text == "hello")
-          {
-            sendMessage(senderId, '1. Đối tượng được cấp, xét học bổng\n- Sinh viên hệ chính quy được xếp loại học tập và rèn luyện trong học kỳ xét học bổng từ loại khá trở lên, không bị xử lí kỷ luật với bất kì hình thức nào\n- Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội và chính sách ưu đãi theo quy định hiện hành thì ngoài chế độ đang được hưởng, nếu đạt kết quả xếp loại học tập và rèn luyện trong học kì từ khá trở lên cũng được xét, cấp học bổng như các sinh viên khác\n2. Tiêu chuẩn xếp loại\n- Xuất sắc:\n+ Điểm từ 9 đến 10\n+ Kết quả rèn luyện loại xuất sắc\n- Giỏi:\n+ Đạt điểm từ 8 đến cận 9\n+ Kết quả rèn luyện loại tốt trở lên\n- Khá:\n+ Đạt điểm từ 7 đến cận 8\n+ Kết quả rèn luyện loại khá trở lên');
-          }
-          else{sendMessage(senderId, "Minh Nghĩa's Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
-        }
-      } else if (message.postback) {
+      if (message.postback) {
         switch (message.postback.payload) {
-          case 'TKB':
-            sendMessage(senderId, "Minh Nghĩa's Bot: " + 'Xin Chào');
+          case 'Q1':
+            sendMessage(senderId, hocbong);
             break;
-        
-          default:
-            sendMessage(senderId, "Minh Nghĩa's Bot: " + 'Xin Chào');
+          case 'Q2':
+            sendMessage(senderId, totnghiep);
+            break;
+          case 'Q3':
+              sendMessage(senderId, chuyennganh);
+            break;
+          case 'Q4':
+            sendMessage(senderId, chuyennganh);
+            break;
+          case 'BUS':
+            sendAttachmentMessage(senderId, 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/BINH_DUONG_Bus_Map.jpg/1024px-BINH_DUONG_Bus_Map.jpg', 'image');
+            break;
+          case 'SP1':
+            sendAttachmentMessage(senderId, 'https://imgur.com/XPuEIPe', 'image');
+            break;
+          case 'SP2':
+            sendAttachmentMessage(senderId, 'https://imgur.com/OYskrdV', 'image');
+            break;
         }
-            
-
       }
     }
   }
