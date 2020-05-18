@@ -237,12 +237,15 @@ app.post('/webhook', function(req, res) {
             sendMessage(senderId, chuyennganh);
             break;
           case 'BUS':
+            sendMessage(senderId, 'Đây là bản đồ tuyến xe buýt của Bình Dương');
             sendAttachmentMessage(senderId, 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/BINH_DUONG_Bus_Map.jpg/1024px-BINH_DUONG_Bus_Map.jpg', 'image');
             break;
           case 'SP1':
+            sendMessage(senderId, 'Di tích lịch sử cấp quốc gia');
             sendAttachmentMessage(senderId, 'https://imgur.com/XPuEIPe', 'image');
             break;
           case 'SP2':
+            sendMessage(senderId, 'Di tích lịch sử cấp tỉnh');
             sendAttachmentMessage(senderId, 'https://imgur.com/OYskrdV', 'image');
             break;
         }
