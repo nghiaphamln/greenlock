@@ -1,6 +1,11 @@
 "use strict";
 
-var express = require("express");
+var logger = require('morgan');
+var http = require('http');
+var bodyParser = require('body-parser');
+var express = require('express');
+var request = require('request');
+var router = express();
 var app = express();
 const APIHuflit = require("./huflit");
 const API = new APIHuflit();
@@ -220,13 +225,6 @@ if (require.main === module) {
   app.listen(3000);
 }
 
-var logger = require('morgan');
-var http = require('http');
-var bodyParser = require('body-parser');
-var express = require('express');
-var request = require('request');
-var router = express();
-var app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
