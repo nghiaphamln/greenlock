@@ -258,6 +258,17 @@ app.post('/webhook', function(req, res) {
           }
           else{sendMessage(senderId, "Minh Nghĩa's Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
         }
+      } else if (message.postback) {
+        switch (message.postback.payload) {
+          case 'TKB':
+            sendMessage(senderId, 'Whatsup bro!');
+            break;
+        
+          default:
+            sendMessage(senderId, "Minh Nghĩa's Bot: " + 'Xin Chào');
+        }
+            
+
       }
     }
   }
