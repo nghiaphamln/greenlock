@@ -153,7 +153,7 @@ app.get("/diem/:fb_id", async (req, res) => {
 
       if (result[0]) {
         console.log(fb_id + " | " + result[0].MSSV);
-        let diem = await TDMU.getAllMark(1824801040118, 123456789);
+        let diem = await TDMU.getAllMark(result[0].MSSV, result[0].PASS);
         msg_diem = diem;
         res.json({
           messages: [
@@ -252,6 +252,9 @@ app.post('/webhook', function(req, res) {
             break;
           case 'DIEM':
             sendMessage(senderId, msg_diem);
+            break;
+          case 'NEWS':
+            sendMessage(senderId, TDMU.getNewsTDMU());
             break;
         }
       }
