@@ -242,11 +242,11 @@ app.post('/webhook', function(req, res) {
             break;
           case 'SP1':
             sendMessage(senderId, 'Di tích lịch sử cấp quốc gia');
-            sendAttachmentMessage(senderId, 'https://imgur.com/XPuEIPe', 'image');
+            sendAttachmentMessage(senderId, 'https://imagehost.imageupload.net/2020/05/18/ditichquocgia.png', 'image');
             break;
           case 'SP2':
             sendMessage(senderId, 'Di tích lịch sử cấp tỉnh');
-            sendAttachmentMessage(senderId, 'https://imgur.com/OYskrdV', 'image');
+            sendAttachmentMessage(senderId, 'https://imagehost.imageupload.net/2020/05/18/ditichcaptinh.png', 'image');
             break;
         }
       }
