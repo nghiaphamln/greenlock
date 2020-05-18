@@ -261,7 +261,7 @@ app.post('/webhook', function(req, res) {
       } else if (message.postback) {
         switch (message.postback.payload) {
           case 'TKB':
-            sendAttachmentMessage(recipientId, 'https://lolskin.weblog.vc/img/images/tiles/Yasuo_18.jpg', 'image')
+            sendAttachmentMessage(senderId, 'https://lolskin.weblog.vc/img/images/tiles/Yasuo_18.jpg', 'image')
             break;
         
           default:
