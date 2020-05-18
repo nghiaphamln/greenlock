@@ -261,7 +261,7 @@ app.post('/webhook', function(req, res) {
       } else if (message.postback) {
         switch (message.postback.payload) {
           case 'TKB':
-            sendMessage(senderId, 'Whatsup bro!');
+            sendAttachmentMessage(recipientId, 'https://lolskin.weblog.vc/img/images/tiles/Yasuo_18.jpg', 'image')
             break;
         
           default:
@@ -290,6 +290,42 @@ function sendMessage(senderId, message) {
         text: message
       },
     }
+  });
+  
+}
+
+
+function sendAttachmentMessage(recipientId, attachmentUrl, attachmentType = 'image') {
+  let messageData = {
+      recipient: {
+          id: recipientId
+      },
+      message: {
+          "attachment": {
+              "type": attachmentType,
+              "payload": {
+                  "url": attachmentUrl,
+                  "is_reusable": true
+              }
+          }
+      }
+  };
+
+  callSendAPI(messageData);
+}
+
+function callSendAPI(messageData) {
+  request({
+      uri: 'https://graph.facebook.com/v3.2/me/messages',
+      qs: {access_token: 'EAAD7RaVAYZAIBAP5FDle5shD6iBQrjgqarZCKduKX11q1Ng07gyKWZAwOjMwgh7UYJivu7uGHQA2wOk8gzSLFeVaPIelBVoY5AktBcXrUZB236AuGMKDANOqa4FF05KB9xZAR0BFX5NSeVCfMUlPyZBFdMtIJhWPOZBnf3kFpHA9IZCsjsaT22H1bhgQFHTKvF8ZD'},
+      method: 'POST',
+      json: messageData
+
+  }, function (err, response, body) {
+      if (err || response.statusCode != 200) {
+          console.error("Unable to send message.", err);
+          console.error(messageData);
+      }
   });
 }
 
