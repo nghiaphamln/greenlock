@@ -153,7 +153,7 @@ app.get("/diem/:fb_id", async (req, res) => {
       if (result[0]) {
         console.log(fb_id + " | " + result[0].MSSV);
         //const diem = await TDMU.getAllMark(result[0].MSSV, result[0].PASS);
-        const diem = await TDMU.getAllMark('1824801040118', '123456789');
+        let diem = await TDMU.getAllMark('1824801040118', '123456789');
         res.json({
           messages: [
             {
@@ -196,6 +196,8 @@ const chuyennganh =
 const hocbong =
     "1. Đối tượng được cấp, xét học bổng\n- Sinh viên hệ chính quy được xếp loại học tập và rèn luyện trong học kỳ xét học bổng từ loại khá trở lên, không bị xử lí kỷ luật với bất kì hình thức nào\n- Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội và chính sách ưu đãi theo quy định hiện hành thì ngoài chế độ đang được hưởng, nếu đạt kết quả xếp loại học tập và rèn luyện trong học kì từ khá trở lên cũng được xét, cấp học bổng như các sinh viên khác\n2. Tiêu chuẩn xếp loại\n- Xuất sắc:\n+ Điểm từ 9 đến 10\n+ Kết quả rèn luyện loại xuất sắc\n- Giỏi:\n+ Đạt điểm từ 8 đến cận 9\n+ Kết quả rèn luyện loại tốt trở lên\n- Khá:\n+ Đạt điểm từ 7 đến cận 8\n+ Kết quả rèn luyện loại khá trở lên";
 
+
+const diem = TDMU.getAllMark('1824801040118', '123456789');
 if (require.main === module) {
   app.listen(3000);
 }
@@ -249,7 +251,7 @@ app.post('/webhook', function(req, res) {
             sendMessage(senderId, 'Di tích lịch sử cấp tỉnh');
             sendAttachmentMessage(senderId, 'https://imagehost.imageupload.net/2020/05/18/ditichcaptinh.png', 'image');
             break;
-          case 'SP2':
+          case 'DIEM':
             sendMessage(senderId, diem);
             break;
         }
