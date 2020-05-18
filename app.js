@@ -218,7 +218,8 @@ app.get('/webhook', function(req, res) {
   res.send('Error, wrong validation token');
 });
 // Đoạn code xử lý khi có người nhắn tin cho bot
-app.post('/webhook', function(req, res) {
+app.post('/webhook', async function(req, res) {
+  
   var entries = req.body.entry;
   for (var entry of entries) {
     var messaging = entry.messaging;
@@ -254,7 +255,8 @@ app.post('/webhook', function(req, res) {
             sendMessage(senderId, msg_diem);
             break;
           case 'NEWS':
-            sendMessage(senderId, TDMU.getNewsTDMU());
+            let news = await TDMU.getNewsTDMU();
+            sendMessage(senderId, news);
             break;
         }
       }
