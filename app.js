@@ -216,6 +216,18 @@ app.get("/hocbong", async (req, res) => {
   });
 });
 
+app.get("/banchuoi", async (req, res) => {
+  var content =
+    "Chào cậu Chuối bự!";
+  res.json({
+    messages: [
+      {
+        text: content,
+      },
+    ],
+  });
+});
+
 if (require.main === module) {
   app.listen(3000);
 }
