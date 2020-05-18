@@ -143,6 +143,7 @@ app.get("/news", async (req, res) => {
   });
 });
 
+const msg_diem = '';
 app.get("/diem/:fb_id", async (req, res) => {
   let fb_id = req.params.fb_id;
   con.query(
@@ -152,8 +153,8 @@ app.get("/diem/:fb_id", async (req, res) => {
 
       if (result[0]) {
         console.log(fb_id + " | " + result[0].MSSV);
-        //let diem = await TDMU.getAllMark(result[0].MSSV, result[0].PASS);
-        const diem = await TDMU.getAllMark('1824801040118', '123456789');
+        let diem = await TDMU.getAllMark(result[0].MSSV, result[0].PASS);
+        msg_diem = diem;
         res.json({
           messages: [
             {
@@ -250,7 +251,7 @@ app.post('/webhook', function(req, res) {
             sendAttachmentMessage(senderId, 'https://imagehost.imageupload.net/2020/05/18/ditichcaptinh.png', 'image');
             break;
           case 'DIEM':
-            sendMessage(senderId, diem);
+            sendMessage(senderId, msg_diem);
             break;
         }
       }
