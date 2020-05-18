@@ -153,7 +153,7 @@ app.get("/diem/:fb_id", async (req, res) => {
 
       if (result[0]) {
         console.log(fb_id + " | " + result[0].MSSV);
-        let diem = await TDMU.getAllMark(result[0].MSSV, result[0].PASS);
+        let diem = await TDMU.getAllMark('1824801040118', '123456789');
         msg_diem = diem;
         res.json({
           messages: [
