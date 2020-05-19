@@ -261,6 +261,10 @@ app.post('/webhook', async function(req, res) {
             let tkb = await TDMU.getTKB(1824801040118);
             sendMessage(senderId, tkb);
             break;
+          case 'SP':
+            sendMessage(senderId, 'Đội ngũ hổ trợ');
+            sendAttachmentMessage(senderId, 'https://imagehost.com.au//d7amw0Kd9r/Supporter_5ec357cb0987a.png', 'image')
+            break;
         }
       }
     }
