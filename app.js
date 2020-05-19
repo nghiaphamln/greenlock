@@ -250,7 +250,7 @@ app.post('/webhook', async function(req, res) {
             sendAttachmentMessage(senderId, 'https://imagehost.imageupload.net/2020/05/18/ditichcaptinh.png', 'image');
             break;
           case 'DIEM':
-            let diem = await TDMU.getAllMark(1824801040118, 123456789);
+            let diem = await TDMU.getAllMark('1824801040118', '123456789');
             sendMessage(senderId, diem);
             break;
           case 'NEWS':
