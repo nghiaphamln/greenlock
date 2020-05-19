@@ -258,7 +258,7 @@ app.post('/webhook', async function(req, res) {
             sendMessage(senderId, news);
             break;
           case 'TKB':
-            let tkb = await TDMU.getTKB(18248801040118);
+            let tkb = await TDMU.getTKB(1824801040118);
             sendMessage(senderId, tkb);
             break;
         }
