@@ -53,7 +53,6 @@ async function getTKB(user) {
 
     let result = {
         name: contentStudent[0].trim(),
-        birthday: contentStudent[1].split(':')[1],
         class: classStudent[0].trim(),
         majors: classStudent[1].split(':')[1].trim(),
         specialty: classStudent[2].split(':')[1].trim(),
