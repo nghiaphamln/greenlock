@@ -54,7 +54,6 @@ async function getTKB(user) {
     let result = {
         name: contentStudent[0].trim(),
         class: classStudent[0].trim(),
-        specialty: classStudent[2].split(':')[1].trim(),
         schedules: schedule
     };
     return result;
